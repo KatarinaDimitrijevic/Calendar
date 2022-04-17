@@ -42,13 +42,14 @@ const Calendar = ({ meetings }) => {
                                                     meetings.filter((m) => {
                                                         const tmp_date = new Date(m.time)
                                                         console.log(tmp_date.getDate())
-                                                        if(tmp_date === cell){
+                                                        if(tmp_date.getDate() === Number.parseInt(cell)){
                                                             return true;
                                                         }
-                                                        else{
-                                                            return false;
-                                                        }
+                                                        
+                                                        return false;
+                                                        
                                                     })
+                                                    
                                                 }
                                             ></Cell>
                                         )}
