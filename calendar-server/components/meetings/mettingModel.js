@@ -4,19 +4,19 @@ const meetingSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     title: {
         type: mongoose.Schema.Types.String,
-        requored: true,
+        required: true,
     },
     description: {
         type: mongoose.Schema.Types.String,
-        requored: true,
+        required: true,
     },
     time: {
-        type: mongoose.Schema.Types.Date,
-        requored: true,
+        type: mongoose.Schema.Types.String,
+        required: true,
     },
     participants: {
         type: [mongoose.Schema.Types.String],
-        requored: true,
+        required: true,
     },
 });
 

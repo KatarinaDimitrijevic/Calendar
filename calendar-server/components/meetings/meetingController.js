@@ -12,19 +12,19 @@ module.exports.getMeetings = async function(req, res, next) {
 
 module.exports.createMeeting = async function(req, res, next) {
     const title = req.body.title;
-    const decsription = req.body.decsription;
+    const description = req.body.description;
     const time = req.body.time;
     const participants = req.body.participants;
     
     try{
 
-        if(title === '' || decsription === '' || time === '' || participants.length === 0){
+        if(title === '' || description === '' || time === '' || participants.length === 0){
             const error = new Error("Validation failed! All values are required!");
             error.status = 400;
             throw error;
         }
 
-        const meeting = await Meeting.createMeeting(title, decsription, time, participants);
+        const meeting = await Meeting.createMeeting(title, description, time, participants);
         res.status(200).json(meeting);
 
     }catch(err){
