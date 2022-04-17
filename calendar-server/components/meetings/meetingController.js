@@ -14,7 +14,7 @@ module.exports.createMeeting = async function(req, res, next) {
     const title = req.body.title;
     const decsription = req.body.decsription;
     const time = req.body.time;
-    const participants = Array(req.body.participants);
+    const participants = req.body.participants;
     
     try{
 
