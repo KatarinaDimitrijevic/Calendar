@@ -4,7 +4,7 @@ const Cell = ({date, meetings}) => {
     const router = useRouter();
 
     const onClickTitle = (id) => {
-        console.log(id);
+        //console.log(id);
         router.push("/meetingDetails/" + id);
     }
     

@@ -11,7 +11,8 @@ const CreateEventForm = ({visible, day}) => {
     const [participants, setParticipants] = useState([]);
 
     const [allParticipants, setAllParticipants] = useState([]);
-    //const [visibility, setVisibility] = useState([visible]);
+    //let users = participants;
+    const [visibility, setVisibility] = useState([visible]);
 
     const router = useRouter();
 
@@ -23,7 +24,7 @@ const CreateEventForm = ({visible, day}) => {
 
     //console.log(allParticipants);
     //console.log(participants);
-    console.log(title, time, description, participants);
+    //console.log(title, time, description, participants);
 
     const resetForm = (form) => {
         form.preventDefault();
@@ -32,6 +33,9 @@ const CreateEventForm = ({visible, day}) => {
         setTime("");
         setParticipants([]);
         multiSelect.current.resetSelectedValues();
+
+        setVisibility(false);
+
     };
 
     const validation = () => {
@@ -58,12 +62,15 @@ const CreateEventForm = ({visible, day}) => {
         form.preventDefault();
         //console.log(title, time, description, participants);
         if(validation()){
+            //setParticipants(users);
+            //console.log("users: ", users);
+
             const meeting = {
                 title : title,
                 description : description,
                 time : time,
                 date : `August ${day}, 2022`,
-                participants: participants.map((p) => p.email),
+                participants: participants,
             };
             createMeeting(meeting);
             resetForm(form);
@@ -107,11 +114,12 @@ const CreateEventForm = ({visible, day}) => {
             <div>
                 <label>Choose participants: 
                 <Multiselect 
-                    options={allParticipants}
+                    isObject={false}
+                    options={allParticipants.map((participant) => participant.email)}
                     selectedValues={[]}
-                    onSelect={(selectedItems) => setParticipants(selectedItems)}
-                    onRemove={(selectedItems) => setParticipants(selectedItems)}
-                    displayValue="name"
+                    onSelect={(selectedItem) => {/*users.push(selectedItem);*/ setParticipants(selectedItem)}}
+                    onRemove={(selectedItem) => setParticipants(selectedItem)}
+                    //displayValue="name"
                     ref={multiSelect}
                 />
                 </label>

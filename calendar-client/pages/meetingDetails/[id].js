@@ -5,15 +5,17 @@ const MeetingDetails = () => {
     const router = useRouter();
     const { id } = router.query;
 
-    console.log(id);
+    //console.log(id);
 
+    const [tmp_list, setList] = useState([]);
     const [meeting, setMeeting] = useState([]);
     useEffect(() => {
         fetch("http://localhost:7000/api/meetings/" + id)
         .then((res) => res.json())
-        .then((curr_meeting) => setMeeting(curr_meeting));
+        .then((curr_meeting) => {setMeeting(curr_meeting); setList(curr_meeting.participants)});
     }, []);
 
+    console.log(meeting.participants);
 
     const deleteMeeting = (meeting) => {
         const options = {
@@ -33,13 +35,17 @@ const MeetingDetails = () => {
 
 
     return(
+        
         <div>
             <h3>Meeting info:</h3>
             <p>Title: {meeting.title}</p>
             <p>Description: {meeting.title}</p>
             <p>Time: {meeting.time}</p>
             <div>
-                Participants: {meeting.participants}
+                Participants:
+                <ul>
+                    {tmp_list.map((p, index) => <li key={index}>{p}</li>)}
+                </ul>
             </div>
             <hr></hr>
             <button onClick={() => onClickDelete()}>Delete</button>
