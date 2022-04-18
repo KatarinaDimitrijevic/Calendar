@@ -7,7 +7,7 @@ const Cell = ({date, meetings}) => {
                 meetings.map((meeting, index) => (
                     <div key = {index} >
                         <p> { meeting.title }</p>
-                        <p>  { meeting.time.split(', ')[1].split(" ")[1].split(":")[0] }:{ meeting.time.split(', ')[1].split(" ")[1].split(":")[1] }h </p>
+                        {/* <p>  { meeting.time.split(', ')[1].split(" ")[1].split(":")[0] }:{ meeting.time.split(', ')[1].split(" ")[1].split(":")[1] }h </p> */}
                     </div>
                 ))
             }

@@ -1,4 +1,6 @@
 import Cell from '../Cell';
+import Modal from '../Modal';
+import CreateEventForm from '../CreateEventForm';
 
 const dates = [
     ["", "1", "2", "3", "4", "5", "6"],
@@ -41,7 +43,6 @@ const Calendar = ({ meetings }) => {
                                                 meetings = {
                                                     meetings.filter((m) => {
                                                         const tmp_date = new Date(m.time)
-                                                        console.log(tmp_date.getDate())
                                                         if(tmp_date.getDate() === Number.parseInt(cell)){
                                                             return true;
                                                         }
@@ -59,8 +60,11 @@ const Calendar = ({ meetings }) => {
                         ))
                     }
                 </tbody>
-
             </table>
+
+            <Modal>
+                <CreateEventForm></CreateEventForm>
+            </Modal>
         </div>
     )
 };
