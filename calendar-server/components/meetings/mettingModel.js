@@ -14,6 +14,11 @@ const meetingSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.String,
         required: true,
     },
+    date: {
+        type: mongoose.Schema.Types.String,
+        required: true,
+    },
+
     participants: {
         type: [mongoose.Schema.Types.String],
         required: true,
@@ -27,12 +32,13 @@ async function getMeetings() {
     return await Meeting.find({}).exec();
 }
 
-async function createMeeting(title, description, time, participants) {
+async function createMeeting(title, description, time, date, participants) {
     const meeting = new Meeting();
     meeting._id = new mongoose.Types.ObjectId();
     meeting.title = title;
     meeting.description = description;
     meeting.time = time;
+    meeting.date = date;
     meeting.participants = participants;
 
     return await meeting.save();

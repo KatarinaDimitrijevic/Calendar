@@ -1,6 +1,7 @@
 import Cell from '../Cell';
 import Modal from '../Modal';
 import CreateEventForm from '../CreateEventForm';
+import { useState } from 'react';
 
 const dates = [
     ["", "1", "2", "3", "4", "5", "6"],
@@ -11,6 +12,9 @@ const dates = [
 ];
 
 const Calendar = ({ meetings }) => {
+
+    const [visible, setVisible] = useState(false);
+    const [day, setDay] = useState("");
 
     return (
         <div>
@@ -38,11 +42,15 @@ const Calendar = ({ meetings }) => {
                                         {cell === "" ? (
                                             <></>
                                         ) : (
-                                            <Cell
+                                            <div onDoubleClick ={() => {
+                                                setVisible(true);
+                                                setDay(cell);
+                                            }}>
+                                                <Cell
                                                 date = {cell}
                                                 meetings = {
                                                     meetings.filter((m) => {
-                                                        const tmp_date = new Date(m.time)
+                                                        const tmp_date = new Date(m.date);
                                                         if(tmp_date.getDate() === Number.parseInt(cell)){
                                                             return true;
                                                         }
@@ -52,7 +60,9 @@ const Calendar = ({ meetings }) => {
                                                     })
                                                     
                                                 }
-                                            ></Cell>
+                                                >
+                                                </Cell>
+                                            </div>
                                         )}
                                     </td>
                                 ))}
@@ -62,9 +72,9 @@ const Calendar = ({ meetings }) => {
                 </tbody>
             </table>
 
-            <Modal>
-                <CreateEventForm></CreateEventForm>
-            </Modal>
+            <div>
+                {visible ? <Modal><CreateEventForm visible={visible} day={day}></CreateEventForm></Modal> : <></>}
+            </div>
         </div>
     )
 };

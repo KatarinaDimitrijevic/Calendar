@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 const MeetingDetails = () => {
     const router = useRouter();
-    const {id} = router.query;
+    const { id } = router.query;
 
     console.log(id);
 

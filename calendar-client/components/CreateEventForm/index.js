@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { Multiselect } from "multiselect-react-dropdown";
 
 
-const CreateEventForm = ({}) => {
+const CreateEventForm = ({visible, day}) => {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -11,18 +11,19 @@ const CreateEventForm = ({}) => {
     const [participants, setParticipants] = useState([]);
 
     const [allParticipants, setAllParticipants] = useState([]);
+    //const [visibility, setVisibility] = useState([visible]);
 
     const router = useRouter();
 
     useEffect(() => {
         fetch('http://localhost:7000/api/users')
         .then(res => res.json())
-        .then(users => setAllParticipants(users))
+        .then(users => setAllParticipants(users));
     }, []);
 
     //console.log(allParticipants);
     //console.log(participants);
-    //console.log(title, time, description, participants);
+    console.log(title, time, description, participants);
 
     const resetForm = (form) => {
         form.preventDefault();
@@ -48,24 +49,25 @@ const CreateEventForm = ({}) => {
         };
     
         fetch("http://localhost:7000/api/meetings", options)
-          .then((res) => res.json())
-          .then((m) => router.push("/meetingDetails/" + m._id));
+          .then((res) => res.json());
       };
 
 
    
       const onSubmitForm = (form) => {
         form.preventDefault();
-        // console.log(title, time, description, participants);
+        //console.log(title, time, description, participants);
         if(validation()){
             const meeting = {
                 title : title,
                 description : description,
                 time : time,
+                date : `August ${day}, 2022`,
                 participants: participants.map((p) => p.email),
             };
             createMeeting(meeting);
             resetForm(form);
+            window.location.reload();
         }else{
             window.alert("All fields are required!");
         }
@@ -76,10 +78,11 @@ const CreateEventForm = ({}) => {
 
     return(
 
-        <form onSubmit={(form) => onSubmitForm(form)}>
+       <div>
+            <form onSubmit={(form) => onSubmitForm(form)}>
             <button type="submit">Save</button>
             <button onClick={(form) => resetForm(form)}>Cancel</button>
-            <h3>Schedule a meeting: </h3>
+            <h3>Schedule a meeting on {day}. August: </h3>
             <div>
                 <label>Title: 
                 <input type="text" name="title"
@@ -114,6 +117,7 @@ const CreateEventForm = ({}) => {
                 </label>
             </div>
         </form>
+       </div>
     )
 };
 
