@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from "next/router"
 import { Multiselect } from "multiselect-react-dropdown";
 
 
@@ -11,6 +12,8 @@ const CreateEventForm = ({}) => {
 
     const [allParticipants, setAllParticipants] = useState([]);
 
+    const router = useRouter();
+
     useEffect(() => {
         fetch('http://localhost:7000/api/users')
         .then(res => res.json())
@@ -22,6 +25,7 @@ const CreateEventForm = ({}) => {
     //console.log(title, time, description, participants);
 
     const resetForm = (form) => {
+        form.preventDefault();
         setTitle("");
         setDescription("");
         setTime("");
@@ -29,10 +33,42 @@ const CreateEventForm = ({}) => {
         multiSelect.current.resetSelectedValues();
     };
 
-    const onSubmitForm = (form) => {
+    const validation = () => {
+        if(title.length === 0 || description.length === 0 || time.length === 0){
+            return false;
+        }
+        return true;
+    }
+
+    const createMeeting = (meeting) => {
+        const options = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(meeting),
+        };
+    
+        fetch("http://localhost:7000/api/meetings", options)
+          .then((res) => res.json())
+          .then((m) => router.push("/meetingDetails/" + m._id));
+      };
+
+
+   
+      const onSubmitForm = (form) => {
         form.preventDefault();
         // console.log(title, time, description, participants);
-
+        if(validation()){
+            const meeting = {
+                title : title,
+                description : description,
+                time : time,
+                participants: participants.map((p) => p.email),
+            };
+            createMeeting(meeting);
+            resetForm(form);
+        }else{
+            window.alert("All fields are required!");
+        }
 
     };
 
