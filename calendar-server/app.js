@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const meetingRoutes = require('./components/meetings/meetingRouter');
+const userRoutes = require('./components/users/usersRouter');
 
 
 const { urlencoded, json } = require('body-parser');
@@ -37,6 +38,7 @@ const cors = require('cors');
 app.use(cors());
 
 app.use('/api/meetings', meetingRoutes);
+app.use('/api/users', userRoutes);
 
 
 app.use(function (req, res, next) {
