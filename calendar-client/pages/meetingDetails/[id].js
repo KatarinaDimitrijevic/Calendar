@@ -16,9 +16,9 @@ const MeetingDetails = () => {
         .then((curr_meeting) => {setMeeting(curr_meeting); setList(curr_meeting.participants)});
     }, []);
 
-    console.log(meeting.participants);
+    //console.log(meeting.participants);
 
-    const deleteMeeting = (meeting) => {
+    const deleteMeeting = () => {
         const options = {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
@@ -31,7 +31,7 @@ const MeetingDetails = () => {
 
 
     const onClickDelete = () => {
-        deleteMeeting(meeting);
+        deleteMeeting();
     };
 
 
@@ -40,7 +40,7 @@ const MeetingDetails = () => {
         <div className={styles.meetingDetails}>
             <h3>Meeting info:</h3>
             <p>Title: {meeting.title}</p>
-            <p>Description: {meeting.title}</p>
+            <p>Description: {meeting.description}</p>
             <p>Time: {meeting.time}h</p>
             <div>
                 Participants:

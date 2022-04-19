@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "multiselect-react-dropdown": "^2.0.21",
     "next": "12.1.5",
     "react": "17.0.0",

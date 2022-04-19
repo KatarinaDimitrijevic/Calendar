@@ -6,6 +6,8 @@ import styles from "./createEventForm.module.css";
 
 const CreateEventForm = ({visible, day}) => {
 
+    console.log("Na pocetku Forme: ", visible);
+
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [time, setTime] = useState("");
@@ -13,14 +15,15 @@ const CreateEventForm = ({visible, day}) => {
 
     const [allParticipants, setAllParticipants] = useState([]);
     //let users = participants;
-    const [visibility, setVisibility] = useState([visible]);
+    const [visibility, setVisibility] = useState(visible);
 
     const router = useRouter();
+    const multiSelect = useRef();
 
     useEffect(() => {
         fetch('http://localhost:7000/api/users')
-        .then(res => res.json())
-        .then(users => setAllParticipants(users));
+        .then((res) => res.json())
+        .then((users) => setAllParticipants(users));
     }, []);
 
     //console.log(allParticipants);
@@ -29,13 +32,14 @@ const CreateEventForm = ({visible, day}) => {
 
     const resetForm = (form) => {
         form.preventDefault();
-        setTitle("");
-        setDescription("");
-        setTime("");
+        setTitle('');
+        setDescription('');
+        setTime('');
         setParticipants([]);
         multiSelect.current.resetSelectedValues();
 
         setVisibility(false);
+        console.log("U reset form: ", visibility);
 
     };
 
@@ -50,7 +54,7 @@ const CreateEventForm = ({visible, day}) => {
         const options = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(meeting),
+          body: JSON.stringify(meeting)
         };
     
         fetch("http://localhost:7000/api/meetings", options)
@@ -73,6 +77,7 @@ const CreateEventForm = ({visible, day}) => {
                 date : `August ${day}, 2022`,
                 participants: participants,
             };
+            
             createMeeting(meeting);
             resetForm(form);
             window.location.reload();
@@ -82,7 +87,6 @@ const CreateEventForm = ({visible, day}) => {
 
     };
 
-    const multiSelect = useRef();
 
     return(
 
@@ -93,21 +97,21 @@ const CreateEventForm = ({visible, day}) => {
             <h4 className={styles.title}>Schedule a meeting on {day}. August: </h4>
             <div>
                 <label>Title: 
-                <input className={styles.input} type="text" name="title"
+                <input className={styles.input} type="text" name="title" value={title}
                         onChange={ (title) => setTitle(title.target.value) }
                 />
                 </label>
             </div>
             <div>
                 <label>Description: 
-                <input className={styles.input} type="text" name="description"
+                <input className={styles.input} type="text" name="description" value={description}
                         onChange={ (description) => setDescription(description.target.value) }
                 />
                 </label>
             </div>
             <div>
                 <label>Time: 
-                <input className={styles.input} type="text" name="time"
+                <input className={styles.input} type="text" name="time" value={time}
                         onChange={ (time) => setTime(time.target.value) }
                 />
                 </label>
@@ -118,9 +122,8 @@ const CreateEventForm = ({visible, day}) => {
                     isObject={false}
                     options={allParticipants.map((participant) => participant.email)}
                     selectedValues={[]}
-                    onSelect={(selectedItem) => {/*users.push(selectedItem);*/ setParticipants(selectedItem)}}
+                    onSelect={(selectedItem) => {setParticipants(selectedItem)}}
                     onRemove={(selectedItem) => setParticipants(selectedItem)}
-                    //displayValue="name"
                     ref={multiSelect}
                 />
                 </label>
