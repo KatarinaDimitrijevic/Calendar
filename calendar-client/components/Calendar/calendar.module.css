@@ -1,0 +1,20 @@
+.tableHeader {
+    padding: 35px;
+    text-align: center;
+    font-size: x-large;
+    color: rgb(118, 112, 112);
+  }
+
+.title {
+    font-size: xx-large;
+    font-style: italic;
+    color: rgb(50, 46, 46);
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+ 
+.calendar {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}

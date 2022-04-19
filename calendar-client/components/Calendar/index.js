@@ -2,6 +2,7 @@ import Cell from '../Cell';
 import Modal from '../Modal';
 import CreateEventForm from '../CreateEventForm';
 import { useState } from 'react';
+import styles from "./calendar.module.css"
 
 const dates = [
     ["", "1", "2", "3", "4", "5", "6"],
@@ -17,19 +18,19 @@ const Calendar = ({ meetings }) => {
     const [day, setDay] = useState("");
 
     return (
-        <div>
-            <h2>August</h2>
+        <div className={styles.calendar}>
+            <h2 className={styles.title}>August</h2>
             <table>
 
                 <thead>
                     <tr>
-                        <td>Sunday</td>
-                        <td>Monday</td>
-                        <td>Tuesday</td>
-                        <td>Wedneday</td>
-                        <td>Thursday</td>
-                        <td>Friday</td>
-                        <td>Saturday</td>
+                        <td className={styles.tableHeader}>Sunday</td>
+                        <td className={styles.tableHeader}>Monday</td>
+                        <td className={styles.tableHeader}>Tuesday</td>
+                        <td className={styles.tableHeader}>Wedneday</td>
+                        <td className={styles.tableHeader}>Thursday</td>
+                        <td className={styles.tableHeader}>Friday</td>
+                        <td className={styles.tableHeader}>Saturday</td>
                     </tr>
                 </thead>
 
