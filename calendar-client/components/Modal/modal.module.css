@@ -1,0 +1,11 @@
+.popUp {
+    position: fixed;
+    top: 20%;
+    left: 35%;
+    width:650px;
+    height: 350px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background: rgb(118, 112, 112);
+}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import styles from "./meetingDetails.module.css"
 
 const MeetingDetails = () => {
     const router = useRouter();
@@ -36,11 +37,11 @@ const MeetingDetails = () => {
 
     return(
         
-        <div>
+        <div className={styles.meetingDetails}>
             <h3>Meeting info:</h3>
             <p>Title: {meeting.title}</p>
             <p>Description: {meeting.title}</p>
-            <p>Time: {meeting.time}</p>
+            <p>Time: {meeting.time}h</p>
             <div>
                 Participants:
                 <ul>
@@ -48,7 +49,7 @@ const MeetingDetails = () => {
                 </ul>
             </div>
             <hr></hr>
-            <button onClick={() => onClickDelete()}>Delete</button>
+            <button className={styles.delete} onClick={() => onClickDelete()}>Delete</button>
         </div>
     )
 };
