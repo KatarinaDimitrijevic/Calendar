@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router"
 import { Multiselect } from "multiselect-react-dropdown";
+import styles from "./createEventForm.module.css";
 
 
 const CreateEventForm = ({visible, day}) => {
@@ -87,26 +88,26 @@ const CreateEventForm = ({visible, day}) => {
 
        <div>
             <form onSubmit={(form) => onSubmitForm(form)}>
-            <button type="submit">Save</button>
-            <button onClick={(form) => resetForm(form)}>Cancel</button>
-            <h3>Schedule a meeting on {day}. August: </h3>
+            <button className={styles.button} type="submit">Save</button>
+            <button className={styles.button} onClick={(form) => resetForm(form)}>Cancel</button>
+            <h4 className={styles.title}>Schedule a meeting on {day}. August: </h4>
             <div>
                 <label>Title: 
-                <input type="text" name="title"
+                <input className={styles.input} type="text" name="title"
                         onChange={ (title) => setTitle(title.target.value) }
                 />
                 </label>
             </div>
             <div>
                 <label>Description: 
-                <input type="text" name="description"
+                <input className={styles.input} type="text" name="description"
                         onChange={ (description) => setDescription(description.target.value) }
                 />
                 </label>
             </div>
             <div>
                 <label>Time: 
-                <input type="text" name="time"
+                <input className={styles.input} type="text" name="time"
                         onChange={ (time) => setTime(time.target.value) }
                 />
                 </label>

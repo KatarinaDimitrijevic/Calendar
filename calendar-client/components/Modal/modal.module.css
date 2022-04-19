@@ -2,10 +2,10 @@
     position: fixed;
     top: 20%;
     left: 35%;
-    width:650px;
+    width:700px;
     height: 350px;
     padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background: rgb(118, 112, 112);
+    padding-left: 25px;
+    padding-right: 25px;
+    background: rgb(196, 192, 192);
 }
