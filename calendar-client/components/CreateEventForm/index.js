@@ -6,7 +6,7 @@ import styles from "./createEventForm.module.css";
 
 const CreateEventForm = ({visible, day}) => {
 
-    console.log("Na pocetku Forme: ", visible);
+    console.log("Na pocetku Forme: ", visible);  
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -96,28 +96,28 @@ const CreateEventForm = ({visible, day}) => {
             <button className={styles.button} onClick={(form) => resetForm(form)}>Cancel</button>
             <h4 className={styles.title}>Schedule a meeting on {day}. August: </h4>
             <div>
-                <label>Title: 
+                <label className={styles.label}>Title: 
                 <input className={styles.input} type="text" name="title" value={title}
                         onChange={ (title) => setTitle(title.target.value) }
                 />
                 </label>
             </div>
             <div>
-                <label>Description: 
+                <label className={styles.label}>Description: 
                 <input className={styles.input} type="text" name="description" value={description}
                         onChange={ (description) => setDescription(description.target.value) }
                 />
                 </label>
             </div>
             <div>
-                <label>Time: 
+                <label className={styles.label}>Time: 
                 <input className={styles.input} type="text" name="time" value={time}
                         onChange={ (time) => setTime(time.target.value) }
                 />
                 </label>
             </div>
             <div>
-                <label>Choose participants: 
+                <label className={styles.label}>Choose participants: 
                 <Multiselect 
                     isObject={false}
                     options={allParticipants.map((participant) => participant.email)}

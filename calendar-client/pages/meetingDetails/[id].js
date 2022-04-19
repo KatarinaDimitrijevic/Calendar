@@ -29,12 +29,6 @@ const MeetingDetails = () => {
           .then(router.back());
       };
 
-
-    const onClickDelete = () => {
-        deleteMeeting();
-    };
-
-
     return(
         
         <div className={styles.meetingDetails}>
@@ -49,7 +43,7 @@ const MeetingDetails = () => {
                 </ul>
             </div>
             <hr></hr>
-            <button className={styles.delete} onClick={() => onClickDelete()}>Delete</button>
+            <button className={styles.delete} onClick={() => deleteMeeting()}>Delete</button>
         </div>
     )
 };

@@ -1,9 +1,14 @@
 .tableHeader {
-    padding: 35px;
+    padding: 30px;
     text-align: center;
     font-size: x-large;
     color: rgb(118, 112, 112);
-  }
+    border-width: 1px;
+    border-style:dashed;
+    border-radius: 3%;
+    border-left: 0;
+    border-right: 0;
+}
 
 .title {
     font-size: xx-large;

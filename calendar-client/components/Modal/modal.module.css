@@ -7,5 +7,8 @@
     padding-top: 10px;
     padding-left: 25px;
     padding-right: 25px;
-    background: rgb(196, 192, 192);
+    background: rgb(211, 192, 232);
+    border-radius: 2%;
+    border-width: 1px;
+    border-style:groove;
 }

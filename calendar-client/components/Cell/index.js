@@ -15,7 +15,7 @@ const Cell = ({date, meetings}) => {
             {  
                 meetings.map((meeting, index) => (
                     <div className={styles.meeting} key = {index} onClick={() => onClickTitle(meeting._id)}>
-                        <p> { meeting.title }</p>
+                        <p className={styles.title}> { meeting.title }</p>
                         <p> { meeting.time}h </p>
                     </div>
                 ))
