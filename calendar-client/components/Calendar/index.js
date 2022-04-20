@@ -3,6 +3,7 @@ import Modal from '../Modal';
 import CreateEventForm from '../CreateEventForm';
 import { useState } from 'react';
 import styles from "./calendar.module.css"
+import { VisibilityContext } from '../../Helper/Context';
 
 const dates = [
     ["", "1", "2", "3", "4", "5", "6"],
@@ -19,7 +20,7 @@ const Calendar = ({ meetings }) => {
 
     return (
         <div className={styles.calendar}>
-            <h2 className={styles.title}>August</h2>
+            <h2 className={styles.title}>August 2022.</h2>
             <table>
 
                 <thead>
@@ -73,9 +74,9 @@ const Calendar = ({ meetings }) => {
                 </tbody>
             </table>
 
-            <div>
-                {visible ? <Modal><CreateEventForm visible={visible} day={day}></CreateEventForm></Modal> : <></>}
-            </div>
+            <VisibilityContext.Provider value={{visible, setVisible}}>
+                {visible ? <Modal><CreateEventForm day={day}></CreateEventForm></Modal> : <></>}
+            </VisibilityContext.Provider>
         </div>
     )
 };

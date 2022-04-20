@@ -1,10 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useRouter } from "next/router"
 import { Multiselect } from "multiselect-react-dropdown";
 import styles from "./createEventForm.module.css";
+import { VisibilityContext } from '../../Helper/Context';
 
 
-const CreateEventForm = ({visible, day}) => { 
+const CreateEventForm = ({day}) => { 
+
+    const {visible, setVisible} = useContext(VisibilityContext);
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -20,7 +23,7 @@ const CreateEventForm = ({visible, day}) => {
         fetch('http://localhost:7000/api/users')
         .then((res) => res.json())
         .then((users) => setAllParticipants(users));
-    }, []);
+    },[]);
 
     //console.log(allParticipants);
     //console.log(participants);
@@ -33,6 +36,17 @@ const CreateEventForm = ({visible, day}) => {
         setTime('');
         setParticipants([]);
         multiSelect.current.resetSelectedValues();
+    };
+
+    const closeForm = (form) => {
+        form.preventDefault();
+        setTitle('');
+        setDescription('');
+        setTime('');
+        setParticipants([]);
+        multiSelect.current.resetSelectedValues();
+
+        setVisible(false);
     };
 
     const validation = () => {
@@ -70,6 +84,7 @@ const CreateEventForm = ({visible, day}) => {
             
             createMeeting(meeting);
             resetForm(form);
+            setVisible(false);
         }else{
             window.alert("All fields are required!");
         }
@@ -83,6 +98,7 @@ const CreateEventForm = ({visible, day}) => {
             <form onSubmit={(form) => onSubmitForm(form)}>
             <button className={styles.button} type="submit">Save</button>
             <button className={styles.button} onClick={(form) => resetForm(form)}>Cancel</button>
+            <button className={styles.button} onClick={(form) => closeForm(form)}>Close</button>
             <h4 className={styles.title}>Schedule a meeting on {day}. August: </h4>
             <div>
                 <label className={styles.label}>Title: 
