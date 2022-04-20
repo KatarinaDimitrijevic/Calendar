@@ -4,9 +4,7 @@ import { Multiselect } from "multiselect-react-dropdown";
 import styles from "./createEventForm.module.css";
 
 
-const CreateEventForm = ({visible, day}) => {
-
-    console.log("Na pocetku Forme: ", visible);  
+const CreateEventForm = ({visible, day}) => { 
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -14,8 +12,6 @@ const CreateEventForm = ({visible, day}) => {
     const [participants, setParticipants] = useState([]);
 
     const [allParticipants, setAllParticipants] = useState([]);
-    //let users = participants;
-    const [visibility, setVisibility] = useState(visible);
 
     const router = useRouter();
     const multiSelect = useRef();
@@ -37,10 +33,6 @@ const CreateEventForm = ({visible, day}) => {
         setTime('');
         setParticipants([]);
         multiSelect.current.resetSelectedValues();
-
-        setVisibility(false);
-        console.log("U reset form: ", visibility);
-
     };
 
     const validation = () => {
@@ -67,8 +59,6 @@ const CreateEventForm = ({visible, day}) => {
         form.preventDefault();
         //console.log(title, time, description, participants);
         if(validation()){
-            //setParticipants(users);
-            //console.log("users: ", users);
 
             const meeting = {
                 title : title,
@@ -80,7 +70,6 @@ const CreateEventForm = ({visible, day}) => {
             
             createMeeting(meeting);
             resetForm(form);
-            window.location.reload();
         }else{
             window.alert("All fields are required!");
         }
