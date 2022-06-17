@@ -1,14 +1,14 @@
 .popUp {
-    position: fixed;
-    top: 20%;
-    left: 35%;
-    width:700px;
-    min-height: 350px;
-    padding-top: 10px;
-    padding-left: 25px;
-    padding-right: 25px;
-    background: rgb(211, 192, 232);
-    border-radius: 2%;
-    border-width: 1px;
-    border-style:groove;
+  position: fixed;
+  top: 20%;
+  left: 35%;
+  width: 700px;
+  min-height: 350px;
+  padding-top: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  background: rgb(211, 192, 232);
+  border-radius: 2%;
+  border-width: 1px;
+  border-style: groove;
 }

@@ -1,22 +1,22 @@
 .tableHeader {
-    padding: 30px;
-    text-align: center;
-    font-size: x-large;
-    color: rgb(118, 112, 112);
-    border-width: 1px;
-    border-style:dashed;
-    border-radius: 3%;
-    border-left: 0;
-    border-right: 0;
+  padding: 30px;
+  text-align: center;
+  font-size: x-large;
+  color: rgb(118, 112, 112);
+  border-width: 1px;
+  border-style: dashed;
+  border-radius: 3%;
+  border-left: 0;
+  border-right: 0;
 }
 
 .title {
-    font-size: xx-large;
-    font-style: italic;
-    color: rgb(50, 46, 46);
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: xx-large;
+  font-style: italic;
+  color: rgb(50, 46, 46);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
- 
+
 .calendar {
   flex-direction: column;
   justify-content: center;
